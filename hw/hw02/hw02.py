@@ -110,7 +110,5 @@ def make_repeater(f, n):
     390625
     """
     def func(x):
-        return f(x)
-    for i in range (1, n+1):
-
+        
     return func
