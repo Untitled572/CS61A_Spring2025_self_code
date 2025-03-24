@@ -31,10 +31,10 @@ def product(n, term):
     >>> product(3, triple)    # 1*3 * 2*3 * 3*3
     162
     """
-    def seq(n):
-        for i in range(1, n+1):
-            
-    return term(1) * term(2) * ... * term(n)
+    total = 1
+    for i in range(1, n+1):
+        total *= term(i)
+    return total
 
 
 def accumulate(fuse, start, n, term):
