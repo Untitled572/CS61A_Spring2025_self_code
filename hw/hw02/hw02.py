@@ -33,7 +33,7 @@ def product(n, term):
     """
     def seq(n):
         for i in range(1, n+1):
-
+            
     return term(1) * term(2) * ... * term(n)
 
 
