@@ -31,8 +31,7 @@ def product(n, term):
     >>> product(3, triple)    # 1*3 * 2*3 * 3*3
     162
     """
-    print(a
-
+    
 def accumulate(fuse, start, n, term):
     """Return the result of fusing together the first n terms in a sequence
     and start.  The terms to be fused are term(1), term(2), ..., term(n).
