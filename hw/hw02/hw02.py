@@ -56,7 +56,11 @@ def accumulate(fuse, start, n, term):
     >>> accumulate(lambda x, y: x + y + 1, 2, 3, square)
     19
     """
-    
+    total = fuse(start, term(1))
+    for i in range(2, n + 1):
+        total = fuse(total, term(i))
+    return total
+
 
 
 def summation_using_accumulate(n, term):
