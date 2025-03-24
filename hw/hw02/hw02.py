@@ -114,5 +114,5 @@ def make_repeater(f, n):
             return f(x)
         for i in range(1, n+1):
             func(f(x))
-    return 
+        return
     return mul_func
