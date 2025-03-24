@@ -31,12 +31,11 @@ def product(n, term):
     >>> product(3, triple)    # 1*3 * 2*3 * 3*3
     162
     """
-    "*** YOUR CODE HERE ***"
-
+    print(a
 
 def accumulate(fuse, start, n, term):
-    """Return the result of fusing together the first n terms in a sequence 
-    and start.  The terms to be fused are term(1), term(2), ..., term(n). 
+    """Return the result of fusing together the first n terms in a sequence
+    and start.  The terms to be fused are term(1), term(2), ..., term(n).
     The function fuse is a two-argument commutative & associative function.
 
     >>> accumulate(add, 0, 5, identity)  # 0 + 1 + 2 + 3 + 4 + 5
