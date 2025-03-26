@@ -65,7 +65,8 @@ def count_cond(condition):
     8
     """
     def ret(n):
-        
+        for i in range(1, n+1):
+            
 
     return ret
 
