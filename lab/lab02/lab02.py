@@ -69,6 +69,7 @@ def count_cond(condition):
         for i in range(1, n+1):
             if condition(n, i):
                 count += 1
+                print(i)
         return count
     return ret
 
