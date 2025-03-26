@@ -64,7 +64,10 @@ def count_cond(condition):
     >>> count_primes(20)   # 2, 3, 5, 7, 11, 13, 17, 19
     8
     """
-    def 
+    def ret(n):
+        
+
+    return ret
 
 
 def multiple(a, b):
