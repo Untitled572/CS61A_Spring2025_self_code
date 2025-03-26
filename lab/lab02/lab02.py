@@ -13,7 +13,12 @@ def composite_identity(f, g):
     >>> b1(4)                            # (4 + 1) ** 2 != 4 ** 2 + 1
     False
     """
-    
+    def identy(x):
+        if f(g(x)) == g(f(x)):
+            return True
+        else:
+            return False
+    return identy
 
 
 def sum_digits(y):
