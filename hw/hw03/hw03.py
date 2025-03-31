@@ -56,8 +56,10 @@ def digit_distance(n):
     l = n // 10
     if l == 0:
         return 0
+    elif len(l) == 1:
+        return
     else:
-        return abs(c - digit_distance(n // 10))
+        return abs(c + digit_distance(n // 10))
 
 
 
