@@ -24,16 +24,8 @@ def num_eights(n):
     ...       ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'For', 'While'])
     True
     """
-    tot = 0
-    def cot(x):
-        if x != 0:
-            cot(x // 10)
-        else:
-            if x % 10 == 8:
-                return int(1)
-            else:
-                return int(0)
-    tot += cot(n)
+    
+    if n
     return tot
 
 def digit_distance(n):
