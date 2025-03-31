@@ -52,6 +52,7 @@ def digit_distance(n):
     ...       ['For', 'While'])
     True
     """
+    c = 
 
     if n == 0:
         return 0
