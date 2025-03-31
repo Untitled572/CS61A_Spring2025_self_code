@@ -124,8 +124,16 @@ def cycle(f1, f2, f3):
             if n == 0:
                 return x
             elif 3 >= n > 0:
-                n -= 1
                 for i in range(n):
+                    x = fl[i](x)
+                return x
+            elif n > 3:
+                a = n // 3
+                b = n % 3
+                for c in range(a):
+                    for i in range(3):
+                        x = fl[i](x)
+                for i in range(b):
                     x = fl[i](x)
                 return x
         return h
