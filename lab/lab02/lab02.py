@@ -118,5 +118,8 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
-    "*** YOUR CODE HERE ***"
-
+    def g(n):
+        def h(x):
+            ...
+        return h
+    return g
