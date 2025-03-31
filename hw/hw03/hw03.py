@@ -25,13 +25,9 @@ def num_eights(n):
     True
     """
     tot = 0
-    if n % 10 == 8:
-        tot += 1
-    if n // 10 == 0:
-        return tot
-    else:
-        num_eights(n // 10)
-
+    def cot(x):
+        ...
+        return 
 
 
 def digit_distance(n):
