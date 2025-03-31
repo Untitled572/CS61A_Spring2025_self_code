@@ -25,18 +25,13 @@ def num_eights(n):
     True
     """
     tot = 0
-    i = 0
-    def cheek(x):
-        if x % 10 == 8:
-            return True
-
-    def loop(n):
-        return n // 10
-
-    if cheek(n):
+    if n % 10 == 8:
         tot += 1
+    if n // 10 == 0:
+        return tot
+    else:
+        num_eights(n // 10)
 
-    print(loop(n))
 
 
 def digit_distance(n):
