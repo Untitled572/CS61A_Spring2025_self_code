@@ -118,8 +118,15 @@ def cycle(f1, f2, f3):
     >>> do_two_cycles(1)
     19
     """
+    fl = [f1, f2, f3]
     def g(n):
         def h(x):
-            ...
+            if n == 0:
+                return x
+            elif 3 >= n > 0:
+                n -= 1
+                for i in range(n):
+                    x = fl[i](x)
+                return x
         return h
     return g
