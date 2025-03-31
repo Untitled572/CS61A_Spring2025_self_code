@@ -24,7 +24,14 @@ def num_eights(n):
     ...       ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'For', 'While'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    tot = 0
+    i = 0
+    def cheek(x):
+        if x == 8:
+            return True
+
+    def loop(n):
+        return n // 10, n % 10
 
 
 def digit_distance(n):
