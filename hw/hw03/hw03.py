@@ -26,7 +26,7 @@ def num_eights(n):
     """
     tot = 0
     def cot(x):
-
+        cot(x // 10)
         if x % 10 == 8:
             return 1
         else:
