@@ -52,10 +52,11 @@ def digit_distance(n):
     ...       ['For', 'While'])
     True
     """
+
     if n == 0:
         return 0
     else:
-        return abs(digit_distance(n) - digit_distance(n // 10))
+        return abs(digit_distance(n // 10) - digit_distance(n // 100))
 
 
 
