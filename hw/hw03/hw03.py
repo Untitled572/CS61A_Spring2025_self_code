@@ -24,8 +24,9 @@ def num_eights(n):
     ...       ['Assign', 'AnnAssign', 'AugAssign', 'NamedExpr', 'For', 'While'])
     True
     """
-    
-    if n
+
+    if n == 0:
+        return
     return tot
 
 def digit_distance(n):
