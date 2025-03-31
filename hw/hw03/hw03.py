@@ -26,8 +26,12 @@ def num_eights(n):
     """
 
     if n == 0:
-        return
-    return tot
+        return 0
+    elif n % 10 == 8:
+        return 1 + num_eights(n // 10)
+    else:
+        return num_eights(n // 10)
+
 
 def digit_distance(n):
     """Determines the digit distance of n.
