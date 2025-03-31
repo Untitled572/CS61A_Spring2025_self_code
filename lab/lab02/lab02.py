@@ -82,7 +82,13 @@ def multiple(a, b):
     >>> multiple(14, 21)
     42
     """
-    
+    c = max(a, b)
+    i = 1
+    while True:
+        i += 1
+        d = c * i
+        if d % min(a, b) == 0:
+            return d
 
 
 
