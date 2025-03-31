@@ -53,7 +53,7 @@ def digit_distance(n):
     True
     """
     c = n % 10
-    l = (n // 10) % 10
+    l = n // 10
     if 9 >= l >= 1:
         return abs(c - l)
     elif l == 0:
