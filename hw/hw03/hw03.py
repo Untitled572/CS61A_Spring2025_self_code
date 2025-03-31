@@ -27,15 +27,13 @@ def num_eights(n):
     tot = 0
     i = 0
     def cheek(x):
-        if x == 8:
+        if x % 10 == 8:
             return True
 
     def loop(n):
-        return n // 10, n % 10
+        return n // 10
 
-    def loop_cheek():
-        return cheek(loop(n)[1])
-    if cheek(loop(n)[1]):
+    if cheek(n):
         tot += 1
 
     print(loop(n))
