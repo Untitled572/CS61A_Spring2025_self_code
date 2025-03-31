@@ -33,6 +33,13 @@ def num_eights(n):
     def loop(n):
         return n // 10, n % 10
 
+    def loop_cheek():
+        return cheek(loop(n)[1])
+    if cheek(loop(n)[1]):
+        tot += 1
+
+    print(loop(n))
+
 
 def digit_distance(n):
     """Determines the digit distance of n.
