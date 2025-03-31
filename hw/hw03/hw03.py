@@ -26,9 +26,13 @@ def num_eights(n):
     """
     tot = 0
     def cot(x):
-        ...
-        return 
 
+        if x % 10 == 8:
+            return 1
+        else:
+            return 0
+    tot += cot(n)
+    return tot
 
 def digit_distance(n):
     """Determines the digit distance of n.
