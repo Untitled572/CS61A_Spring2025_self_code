@@ -123,11 +123,7 @@ def cycle(f1, f2, f3):
         def h(x):
             if n == 0:
                 return x
-            elif 3 >= n > 0:
-                for i in range(n):
-                    x = fl[i](x)
-                return x
-            elif n > 3:
+            elif n > 0:
                 a = n // 3
                 b = n % 3
                 for c in range(a):
