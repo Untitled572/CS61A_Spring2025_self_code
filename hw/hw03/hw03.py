@@ -92,9 +92,9 @@ def interleaved_sum(n, odd_func, even_func):
     if n == 1:
         return odd_func(1)
     elif n == 2:
-        return even_func(2)
+        return odd_func(1) + even_func(2)
     else:
-        return interleaved_sum(n-1, odd_func, even_func)
+        return interleaved_sum(n-2, odd_func, even_func) + interleaved_sum(n - 1, odd_func, even_func)
 
 
 
