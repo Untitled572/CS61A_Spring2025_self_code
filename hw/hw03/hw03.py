@@ -84,7 +84,9 @@ def interleaved_sum(n, odd_func, even_func):
     >>> check(HW_SOURCE_FILE, 'interleaved_sum', ['BitAnd', 'BitOr', 'BitXor']) # ban bitwise operators, don't worry about these if you don't know what they are
     True
     """
-    
+    i = 1
+    odd_func(1) + even_func(2)
+    return interleaved_sum(1, odd_func(i))
 
 
 
