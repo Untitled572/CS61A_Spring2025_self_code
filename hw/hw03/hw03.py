@@ -89,13 +89,16 @@ def interleaved_sum(n, odd_func, even_func):
     i = 1
     odd_func(1) + even_func(2) + odd_func(3)
     """
-    if n == 1:
-        return odd_func(1)
-    elif n == 2:
-        return odd_func(1) + even_func(2)
-    else:
-        return interleaved_sum(n-2, odd_func, even_func) + interleaved_sum(n - 1, odd_func, even_func)
+    i = 1
+    def interleaved_sum_i(n, odd_func, even_func, i):
+        if i < n:
+            return odd_func(i) + even_func(i + 1) + interleaved_sum_i(n, odd_func, even_func, i + 2)
+        elif i == n:
+            return odd_func(i)
+        else:
+            return 0
 
+    return interleaved_sum_i(n, odd_func, even_func, i)
 
 
 def next_smaller_dollar(bill):
@@ -110,6 +113,7 @@ def next_smaller_dollar(bill):
         return 5
     elif bill == 5:
         return 1
+
 
 def count_dollars(total):
     """Return the number of ways to make change.
@@ -131,7 +135,32 @@ def count_dollars(total):
     >>> check(HW_SOURCE_FILE, 'count_dollars', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+
+    def find_first_dollar(n):
+        if next_smaller_dollar(n) != None:
+            return n
+        elif n == 0:
+            return 1
+        elif n < 0:
+            return 0
+        return find_first_dollar(n - 1)
+
+    first = find_first_dollar(total)
+
+    def count_part(n, m):
+        if n == 0:
+            return 1
+        elif m == 1:
+            return 1
+        elif n < 0:
+            return 0
+        else:
+            return count_part(n, next_smaller_dollar(m)) + count_part((n - m), m)
+
+    return count_part(total, first)
+
+
+
 
 
 def next_larger_dollar(bill):
@@ -167,7 +196,18 @@ def count_dollars_upward(total):
     >>> check(HW_SOURCE_FILE, 'count_dollars_upward', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+
+    def count_part(n, m):
+        if n == 0:
+            return 1
+        elif m == None:
+            return 0
+        elif n < 0:
+            return 0
+        else:
+            return count_part(n, next_larger_dollar(m)) + count_part((n - m), m)
+
+    return count_part(total, 1)
 
 
 def print_move(origin, destination):
