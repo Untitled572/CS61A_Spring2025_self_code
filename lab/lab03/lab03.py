@@ -14,7 +14,11 @@ def print_if(s, f):
     None
     """
     for x in s:
-        "*** YOUR CODE HERE ***"
+        if(f(x)):
+            print(x)
+
+
+
 
 
 def close(s, k):
@@ -32,7 +36,8 @@ def close(s, k):
     """
     count = 0
     for i in range(len(s)):  # Use a range to loop over indices
-        "*** YOUR CODE HERE ***"
+        if(abs(i - s[i]) <= k):
+            count += 1
     return count
 
 
@@ -47,7 +52,7 @@ def close_list(s, k):
     >>> close_list(t, 2)  # 2, 3, 4, and 5 are all within 2 of their index
     [2, 4, 3, 5]
     """
-    return [___ for i in range(len(s)) if ___]
+    return [s[i] for i in range(len(s)) if (abs(i - s[i]) <= k)]
 
 
 from math import sqrt
@@ -63,7 +68,7 @@ def squares(s):
     >>> squares(seq)
     []
     """
-    return [___ for n in s if ___]
+    return [int(pow(n, 1/2)) for n in s if pow(n, 1/2) % 1 == 0]
 
 
 def double_eights(n):
@@ -87,7 +92,11 @@ def double_eights(n):
     >>> check(LAB_SOURCE_FILE, 'double_eights', ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    if(n // 10 == 0):
+        return False
+    if((n % 10) % 8 == 0 and (n // 10 % 10) % 8 == 0):
+        return True
+    return double_eights(n // 10)
 
 
 def make_onion(f, g):
@@ -116,10 +125,47 @@ def make_onion(f, g):
     """
     def can_reach(x, y, limit):
         if limit < 0:
-            return ____
+            return False
         elif x == y:
-            return ____
+            return True
         else:
-            return can_reach(____, ____, limit - 1) or can_reach(____, ____, limit - 1)
+            return can_reach(f(x), y, limit - 1) or can_reach(g(x), y, limit - 1)
     return can_reach
 
+
+def ten_pairs(n):
+    """Return the number of ten-pairs within positive integer n.
+
+    >>> ten_pairs(7823952) # 7+3, 8+2, and 8+2
+    3
+    >>> ten_pairs(55055)
+    6
+    >>> ten_pairs(9641469) # 9+1, 6+4, 6+4, 4+6, 1+9, 4+6
+    6
+    >>> # ban iteration
+    >>> from construct_check import check
+    >>> check(LAB_SOURCE_FILE, 'ten_pairs', ['While', 'For'])
+    True
+    """
+    if(n // 10 == 0):
+        return 0
+    if(count_digit(n // 10, 10 - (n % 10)) > 0):
+        return count_digit(n // 10, 10 - (n % 10)) + ten_pairs(n // 10)
+    return ten_pairs(n // 10)
+
+
+def count_digit(n, digit):
+    """Return how many times digit appears in n.
+
+    >>> count_digit(55055, 5) # digit 5 appears 4 times in 55055
+    4
+    >>> from construct_check import check
+    >>> # ban iteration
+    >>> check(LAB_SOURCE_FILE, 'count_digits', ['While', 'For'])
+    True
+    """
+    if(n < 1):
+        return 0
+    if(n % 10 == digit):
+        return 1 + count_digit(n // 10, digit)
+    return count_digit(n // 10, digit)
