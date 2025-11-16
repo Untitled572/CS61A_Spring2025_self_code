@@ -38,7 +38,11 @@ def deep_map(f, s):
     >>> s3 is s2[1]
     True
     """
-    "*** YOUR CODE HERE ***"
+    for elem in range(len(s)):
+        if type(s[elem]) != list:
+            s[elem] = f(s[elem])
+        else:
+            deep_map(f, s[elem])
 
 
 SOURCE_FILE = __file__
@@ -47,12 +51,12 @@ SOURCE_FILE = __file__
 def planet(mass):
     """Construct a planet of some mass."""
     assert mass > 0
-    "*** YOUR CODE HERE ***"
+    return ['planet', mass]
 
 def mass(p):
     """Select the mass of a planet."""
     assert is_planet(p), 'must call mass on a planet'
-    "*** YOUR CODE HERE ***"
+    return p[1]
 
 def is_planet(p):
     """Whether p is a planet."""
@@ -104,7 +108,10 @@ def balanced(m):
     >>> check(SOURCE_FILE, 'balanced', ['Index'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    if is_planet(m):
+        return True
+    return (total_mass(end(left(m))) * length(left(m)) == total_mass(end(right(m))) * length(right(m))
+            and balanced(end(left(m))) and balanced(end(right(m))))
 
 
 def berry_finder(t):
@@ -124,7 +131,12 @@ def berry_finder(t):
     >>> berry_finder(t)
     True
     """
-    "*** YOUR CODE HERE ***"
+    if label(t) == 'berry':
+        return True
+    for branch in branches(t):
+        if berry_finder(branch):
+            return True
+    return False
 
 
 SOURCE_FILE = __file__
@@ -139,7 +151,14 @@ def max_path_sum(t):
     >>> max_path_sum(t2) # 5, 2, 10
     17
     """
-    "*** YOUR CODE HERE ***"
+    max = 0
+    if is_leaf(t):
+        return label(t)
+    for branch in branches(t):
+        value = max_path_sum(branch)
+        if value >= max:
+            max = value
+    return max + label(t)
 
 
 def mobile(left, right):

@@ -26,7 +26,17 @@ def insert_items(s: list[int], before: int, after: int) -> list[int]:
     >>> large_s3 is large_s
     True
     """
-    "*** YOUR CODE HERE ***"
+    i = 0
+    length = len(s)
+    while i < length:
+        if s[i] == before:
+            s.insert(i + 1, after)
+            i += 2
+            length += 1
+        else:
+            i += 1
+            continue
+    return s
 
 
 def group_by(s: list[int], fn) -> dict[int, list[int]]:
@@ -40,16 +50,17 @@ def group_by(s: list[int], fn) -> dict[int, list[int]]:
     {9: [-3, 3], 4: [-2, 2], 1: [-1, 1], 0: [0]}
     """
     grouped = {}
-    for ____ in ____:
-        key = ____
+    for elem in s:
+        key = fn(elem)
         if key in grouped:
-            ____
+            grouped[key].append(elem)
         else:
-            grouped[key] = ____
+            grouped[key] = [elem]
     return grouped
 
 
-from typing import Iterator  # "t: Iterator[int]" means t is an iterator that yields integers
+from typing import Iterator
+from unittest import result  # "t: Iterator[int]" means t is an iterator that yields integers
 
 def count_occurrences(t: Iterator[int], n: int, x: int) -> int:
     """Return the number of times that x is equal to one of the
@@ -72,7 +83,11 @@ def count_occurrences(t: Iterator[int], n: int, x: int) -> int:
     >>> count_occurrences(v, 6, 6)
     2
     """
-    "*** YOUR CODE HERE ***"
+    result = 0
+    for i in range(n):
+        if next(t) == x:
+            result += 1
+    return result
 
 
 from typing import Iterator  # "t: Iterator[int]" means t is an iterator that yields integers
@@ -97,8 +112,19 @@ def repeated(t: Iterator[int], k: int) -> int:
     2
     """
     assert k > 1
-    "*** YOUR CODE HERE ***"
 
+    result = 1
+    curr = next(t)
+    for i in t:
+        if i == curr:
+            result += 1
+            if result == k:
+                return curr
+        else:
+            result = 1
+            curr = i
+
+    return curr
 
 def sprout_leaves(t, leaves):
     """Sprout new leaves containing the labels in leaves at each leaf of

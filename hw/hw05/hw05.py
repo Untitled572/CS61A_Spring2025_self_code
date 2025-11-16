@@ -21,7 +21,7 @@ def hailstone(n):
     >>> next(hail_gen)
     1
     """
-    "*** YOUR CODE HERE ***"
+    
 
 
 def merge(a, b):
