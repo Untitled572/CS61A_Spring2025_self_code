@@ -219,10 +219,10 @@ class Mint:
         self.update()
 
     def create(self, coin):
-        "*** YOUR CODE HERE ***"
+        return coin(self.year)
 
     def update(self) -> None:
-        "*** YOUR CODE HERE ***"
+        self.year = self.present_year
 
 class Coin:
     cents = None # will be provided by subclasses, but not by Coin itself
@@ -231,7 +231,7 @@ class Coin:
         self.year = year
 
     def worth(self) -> int:
-        "*** YOUR CODE HERE ***"
+        return self.cents + max((Mint.present_year - self.year - 50), 0) if self.cents != None else 0
 
 class Nickel(Coin):
     cents = 5
@@ -262,11 +262,15 @@ class VirFib():
     VirFib object, value 8
     """
 
-    def __init__(self, value: int = 0):
+    def __init__(self, value: int = 0, prev = 0):
         self.value = value
+        self.prev = prev
+
 
     def next(self):
-        "*** YOUR CODE HERE ***"
+        if self.value == 0:
+            return VirFib(1)
+        return VirFib(self.value + self.prev, self.value)
 
     def __repr__(self) -> str:
         return "VirFib object, value " + str(self.value)
