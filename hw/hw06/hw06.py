@@ -1,4 +1,6 @@
 from __future__ import annotations
+from operator import length_hint
+import re
 
 
 class Link:
@@ -82,14 +84,18 @@ class VendingMachine:
     """
     def __init__(self, product: str, price: int):
         """Set the product and its price, as well as other instance attributes."""
-        "*** YOUR CODE HERE ***"
+        self.product = product
+        self.price = price
+        self.stock = 0
+        self.fond = 0
 
     def restock(self, n: int) -> str:
         """Add n to the stock and return a message about the updated stock level.
 
         E.g., Current candy stock: 3
         """
-        "*** YOUR CODE HERE ***"
+        self.stock += n
+        return f'Current {self.product} stock: {self.stock}'
 
     def add_funds(self, n: int) -> str:
         """If the machine is out of stock, return a message informing the user to restock
@@ -101,7 +107,12 @@ class VendingMachine:
 
         E.g., Current balance: $4
         """
-        "*** YOUR CODE HERE ***"
+        self.fond += n
+        if self.stock <= 0:
+            n = self.fond
+            self.fond = 0
+            return f'Nothing left to vend. Please restock. Here is your ${n}.'
+        return f'Current balance: ${self.fond}'
 
     def vend(self) -> str:
         """Dispense the product if there is sufficient stock and funds and
@@ -114,7 +125,16 @@ class VendingMachine:
         E.g., Nothing left to vend. Please restock.
               Please add $3 more funds.
         """
-        "*** YOUR CODE HERE ***"
+        if self.stock <= 0:
+            return 'Nothing left to vend. Please restock.'
+        if self.fond < self.price:
+            return f'Please add ${self.price - self.fond} more funds.'
+        self.fond -= self.price
+        temp_fond = self.fond
+        messige = f'Here is your {self.product} and ${temp_fond} change.' if temp_fond != 0 else f'Here is your {self.product}.'
+        self.fond = 0
+        self.stock -= 1
+        return messige
 
 
 def store_digits(n: int):
@@ -136,7 +156,24 @@ def store_digits(n: int):
     >>> cleaned = re.sub(r"#.*\\n", '', re.sub(r'"{3}[\s\S]*?"{3}', '', inspect.getsource(store_digits)))
     >>> print("Do not use str or reversed!") if any([r in cleaned for r in ["str", "reversed"]]) else None
     """
-    "*** YOUR CODE HERE ***"
+
+    if n // 10 == 0:
+        return Link(n)
+
+    def get_length(n):
+        if n == 0:
+            return 0
+        return get_length(n // 10) + 1
+
+    length = get_length(n)
+
+    def innner(n, length):
+        if n == 0 and length == 0:
+            return Link.empty
+        return Link(n // pow(10, length - 1) % 10, innner(n % pow(10, length - 1), length - 1))
+
+    return innner(n, length)
+
 
 
 def deep_map_mut(func, s: Link) -> None:
@@ -166,7 +203,13 @@ def deep_map_mut(func, s: Link) -> None:
     >>> print(link2)
     (2 ((4 6)) 8)
     """
-    "*** YOUR CODE HERE ***"
+    if s == Link.empty:
+        return
+    if isinstance(s.first, Link):
+        deep_map_mut(func, s.first)
+    else:
+        s.first = func(s.first)
+    deep_map_mut(func, s.rest)
 
 
 def prune_small(t, n):
